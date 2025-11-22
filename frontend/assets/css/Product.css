@@ -1,0 +1,42 @@
+/* Import main theme from Home.css */
+@import url("Home.css");
+
+/* Category Grid */
+.product-grid {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.product-card {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.placeholder-img {
+  width: 100%;
+  height: 140px;
+  border-radius: 0.6rem;
+  background: #f3f4f6;
+  border: 1px dashed #cbd5e1;
+  margin-bottom: 1rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.product-card p {
+  color: #4b5563;
+  margin-bottom: 0.7rem;
+  font-size: 0.9rem;
+}

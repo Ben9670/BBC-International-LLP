@@ -1,0 +1,127 @@
+/* First import common base styles from Home.css (same theme) */
+@import url("Home.css");
+
+/* You can also import About.css instead, if that's your main base */
+
+/* Page hero */
+.subpage-hero {
+  background: #ffffff;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.subpage-hero-inner h1 {
+  font-size: 2.2rem;
+  color: #990000;
+  margin-bottom: 0.5rem;
+}
+
+.subpage-hero-inner p {
+  color: #4b5563;
+  font-size: 1rem;
+}
+
+/* Intro text */
+.intro-text {
+  font-size: 0.98rem;
+  color: #4b5563;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Service Grid */
+.service-grid {
+  margin-top: 1.8rem;
+}
+
+.service-list {
+  margin-top: 0.6rem;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.service-list li {
+  margin-bottom: 0.2rem;
+}
+
+/* Red titles */
+.red-title {
+  color: #990000;
+  font-weight: 600;
+}
+
+/* Process flow */
+.process-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+}
+
+.step {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  padding: 1rem 1.1rem;
+}
+
+.step-number {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  background: #990000;
+  color: #ffffff;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.step h3 {
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+  color: #111827;
+}
+
+.step p {
+  font-size: 0.88rem;
+  color: #4b5563;
+}
+
+/* CTA */
+.cta-card {
+  border-radius: 0.9rem;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: #fef2f2;
+}
+
+.cta-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 0.7rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subpage-hero {
+    padding: 2.3rem 0 1.5rem;
+  }
+}
