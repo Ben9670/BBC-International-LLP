@@ -1,0 +1,93 @@
+/* Import Base Theme */
+@import url("Home.css");
+
+/* Hero */
+.subpage-hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.subpage-hero-inner h1 {
+  font-size: 2.2rem;
+  color: #990000;
+}
+
+.subpage-hero-inner p {
+  color: #4b5563;
+}
+
+/* Client Grid */
+.client-grid {
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.client-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.8rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.client-card img {
+  max-width: 100%;
+  max-height: 70px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: 0.3s ease-in-out;
+}
+
+.client-card img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+
+/* Compliance Grid */
+.compliance-grid {
+  margin-top: 1.8rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.compliance-card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.placeholder {
+  height: 90px;
+  background: #f3f4f6;
+  border: 1px dashed #cbd5e1;
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  color: #6b7280;
+}
+
+.compliance-card p {
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .placeholder {
+    height: 70px;
+  }
+}

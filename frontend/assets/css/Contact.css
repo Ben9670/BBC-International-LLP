@@ -1,0 +1,89 @@
+/* Use main theme */
+@import url("Home.css");
+
+/* Page Hero */
+.subpage-hero {
+  background: #ffffff;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.subpage-hero-inner h1 {
+  font-size: 2.2rem;
+  color: #990000;
+  margin-bottom: 0.4rem;
+}
+
+.subpage-hero-inner p {
+  color: #4b5563;
+}
+
+/* Contact Section */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+}
+
+.info-list {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.info-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.map-embed {
+  margin-top: 1.5rem;
+  height: 250px;
+  border-radius: 0.7rem;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+/* Contact Form */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #990000;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.primary-btn {
+  background: #990000;
+  color: #fff;
+}
+
+.primary-btn:hover {
+  background: #7f0000;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
