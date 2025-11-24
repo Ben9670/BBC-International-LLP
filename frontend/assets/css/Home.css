@@ -421,6 +421,24 @@ img {
   }
 }
 
+/* Start invisible to prevent flash */
+body {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Fade in when page loads */
+body.fade-in {
+  opacity: 1;
+}
+
+/* Fade out when leaving the page */
+.fade-out {
+  opacity: 0;
+}
+
+
+
 @media (max-width: 720px) {
   .header-inner {
     flex-direction: column;
