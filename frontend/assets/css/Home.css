@@ -53,11 +53,21 @@ img {
 }
 
 .header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.9rem 0;
+    display: flex;
+    justify-content: center; /* center the nav */
+    align-items: center;
+    position: relative;
+    padding: 1rem 0;
 }
+
+.logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
 
 .logo {
   display: flex;
