@@ -1,0 +1,55 @@
+/* ALL PANELS */
+.panel {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* RED PANEL */
+.panel-red {
+  background: #990000;
+  z-index: 30;
+  animation-delay: 1s; /* stays for 1 second */
+}
+
+/* WHITE PANEL */
+.panel-white {
+  background: #ffffff;
+  z-index: 20;
+  animation-delay: 1.8s; /* starts after red finishes sliding */
+}
+
+/* LOGO STYLE */
+.logo {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.white-logo {
+  color: #ffffff;
+}
+
+.red-logo {
+  color: #990000;
+}
+
+.logo span {
+  display: block;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* SLIDE UP ANIMATION */
+@keyframes slideUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}

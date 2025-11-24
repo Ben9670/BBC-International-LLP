@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BBC International</title>
+
+  <link rel="stylesheet" href="../assets/css/Intro.css" />
+</head>
+<body>
+
+  <!-- PANEL 1 (RED) -->
+  <div class="panel panel-red">
+    <div class="logo white-logo">BBC INTERNATIONAL<br><span>Quality. Compliance. Commitment.</span></div>
+  </div>
+
+  <!-- PANEL 2 (WHITE) -->
+  <div class="panel panel-white">
+    <div class="logo red-logo">BBC INTERNATIONAL<br><span>Quality. Compliance. Commitment.</span></div>
+  </div>
+
+  <script>
+    // Redirect after animation ends
+    setTimeout(() => {
+      window.location.href = "Home.html";
+    }, 2000);  // 2 seconds
+  
+
+    // Sound effects
+  const soundRed = new Audio("../assets/sounds/intro3.mp3");
+  const soundWhite = new Audio("../assets/sounds/intro3.mp3");
+
+  // Play sound when RED panel moves (0s)
+  setTimeout(() => {
+    soundRed.volume = 0.8; // adjust volume
+    soundRed.play();
+  }, 0);
+
+  // Play sound when WHITE panel moves (1s)
+  setTimeout(() => {
+    soundWhite.volume = 0.8;
+    soundWhite.play();
+  }, 1000);
+
+  // Redirect after animation ends
+  setTimeout(() => {
+    window.location.href = "Home.html";
+  }, 2000);
+</script>
+
+
+</body>
+</html>

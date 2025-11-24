@@ -93,11 +93,48 @@ img {
   text-decoration: none;
   font-size: 0.95rem;
   color: #4b5563;
+  position: relative;      /* required for underline */
+  padding-bottom: 6px;     /* small space for underline */
+  transition: 0.3s ease;
 }
 
+/* Hover color */
 .nav a:hover {
   color: #c10d0d;
 }
+
+/* Underline base (invisible) */
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: #c10d0d;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+/* Show underline ONLY on hovered item */
+.nav a:hover::after {
+  width: 70%;
+}
+
+/* ACTIVE TAB – full block highlight */
+.nav a.active {
+  background: #c10d0d;     /* red block */
+  color: #ffffff !important;
+  padding: 0.5rem 1.2rem;   /* adds space inside the block */
+  border-radius: 4px;       /* soft corners */
+}
+
+/* Remove underline for the active item */
+.nav a.active::after {
+  width: 0 !important;
+}
+
 
 /* Hero */
 .hero {

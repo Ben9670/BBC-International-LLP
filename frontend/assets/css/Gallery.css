@@ -1,0 +1,55 @@
+@import url("Home.css");
+
+/* Hero */
+.subpage-hero {
+  padding: 3rem 0 2rem;
+  text-align: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.subpage-hero-inner h1 {
+  color: #990000;
+  font-size: 2.2rem;
+}
+
+.subpage-hero-inner p {
+  color: #4b5563;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.gallery-card {
+  background: #ffffff;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.35s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .gallery-card img {
+    height: 180px;
+  }
+}
