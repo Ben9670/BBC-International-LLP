@@ -438,22 +438,109 @@ body.fade-in {
 }
 
 
+/* Desktop Defaults */
+.hamburger {
+  display: none;
+}
 
-@media (max-width: 720px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.6rem;
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+/* MOBILE NAVIGATION */
+@media (max-width: 900px) {
+
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    width: 28px;
+    z-index: 999;
+  }
+  .hamburger span {
+    display: block;
+    height: 3px;
+    background: #c10d0d;
+    margin: 5px 0;
+    border-radius: 10px;
+    transition: 0.3s ease;
   }
 
+  /* Hide NAV by default */
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #ffffff;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    z-index: 888;
+  }
+
+  /* When menu is open */
+  .nav.active {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  /* Mobile Menu Links */
   .nav a {
-    margin-left: 0;
-    margin-right: 0.9rem;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    gap: 0.4rem;
-    text-align: center;
+    padding: 0.7rem 0;
+    margin: 0;
+    font-size: 1.1rem;
   }
 }
+
+/* Smooth dropdown animation */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Default hamburger bars */
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #c10d0d;
+  margin: 5px 0;
+  border-radius: 5px;
+  transition: 0.4s ease;
+}
+
+/* When menu is active, animate lines to X */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile only */
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    width: 28px;
+    margin-left: auto;
+    z-index: 999;
+  }
+}
+
