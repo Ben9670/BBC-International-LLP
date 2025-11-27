@@ -1,42 +1,170 @@
 /* Import main theme from Home.css */
 @import url("Home.css");
 
-/* Category Grid */
+
+/* ============================
+   HERO BANNER (H&M STYLE)
+   ============================ */
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  margin-top: 0rem; /* shifts banner flush to header */
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* Bottom Strip */
+.hero-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: inherit;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Title Text */
+.hero-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #111;
+}
+
+/* Arrow Button */
+.hero-arrow {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  padding: 0 12px;
+  color: #111;
+  transition: transform 0.3s ease;
+}
+
+.hero-arrow:hover {
+  transform: translateX(8px);
+}
+
+.arrow-icon {
+  font-size: 1.7rem;
+  font-weight: 300;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-banner {
+    height: 60vh;
+  }
+
+  .hero-bottom-bar {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .hero-title {
+    font-size: 1rem;
+  }
+
+  .hero-arrow {
+    font-size: 1.4rem;
+  }
+}
+
+
 .product-grid {
   margin-top: 2rem;
   display: grid;
-  gap: 1.4rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .product-card {
+  padding: 1.4rem;
+  border-radius: 1rem;
+  background: #ffffff;
   border: 1px solid #e5e7eb;
-  background: #fff;
-  border-radius: 0.8rem;
-  padding: 1.2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s ease;
   text-align: center;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  border-color: #d1d5db;
 }
 
 .placeholder-img {
-  width: 100%;
-  height: 140px;
-  border-radius: 0.6rem;
-  background: #f3f4f6;
-  border: 1px dashed #cbd5e1;
-  margin-bottom: 1rem;
-  color: #6b7280;
+  height: 160px;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border: 1px solid #e2e8f0;
+  border-radius: 0.8rem;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .placeholder-img {
+  border-color: #d0d7e1;
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
 }
 
 .product-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  color: #b91c1c;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .product-card p {
   color: #4b5563;
-  margin-bottom: 0.7rem;
-  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+}
+
+.product-card a {
+  text-decoration: none;
+}
+
+.product-card .btn {
+  padding: 0.55rem 1.2rem;
+  font-size: 0.85rem;
+  border-radius: 0.4rem;
+  border: 1px solid #b91c1c;
+  background: transparent;
+  color: #b91c1c;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .btn {
+  background: #b91c1c;
+  color: #fff;
 }
