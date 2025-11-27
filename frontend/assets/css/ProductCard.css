@@ -1,6 +1,141 @@
 /* Use main theme */
 @import url("Home.css");
 
+/* ============================
+   HERO SLIDER
+   ============================ */
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  margin-top: 0; /* aligns immediately after header */
+}
+
+/* Container holding all slides */
+.slides-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Slide image */
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================
+   BOTTOM INFORMATION BAR
+   ============================ */
+.hero-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.397);
+  padding: 1rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-top: 1px solid #e5e5e5;
+}
+
+.hero-title {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: #111;
+}
+
+/* Arrow inside the bottom bar */
+.hero-arrow {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  padding: 0 12px;
+  transition: transform 0.3s ease;
+}
+
+.hero-arrow:hover {
+  transform: translateX(8px);
+}
+
+.arrow-icon {
+  font-size: 1.6rem;
+}
+
+/* ============================
+   LEFT & RIGHT NAVIGATION BUTTONS
+   ============================ */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  font-size: 2rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.slider-btn:hover {
+  background: #ffffff;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+
+@media (max-width: 768px) {
+  .hero-slider {
+    height: 60vh;
+  }
+
+  .hero-bottom-bar {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .hero-title {
+    font-size: 1rem;
+  }
+
+  .slider-btn {
+    font-size: 1.5rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+
 .product-grid {
   margin-top: 2rem;
   display: grid;
