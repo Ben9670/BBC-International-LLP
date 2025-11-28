@@ -1,0 +1,70 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Coming Soon Text Animation */
+.coming-soon-container h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #c10d0d;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+
+  opacity: 0;
+  transform: scale(0.85);
+  animation: fadeZoom 1.6s ease-out forwards;
+}
+
+/* Fade + Zoom */
+@keyframes fadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Dots style */
+.dot {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0);
+  padding-left: 2px;
+  animation: bounce 0.5s ease infinite;
+  animation-delay: var(--delay);
+}
+
+/* Bounce animation for dots */
+@keyframes bounce {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-8px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Delay dots so they bounce one by one */
+.dot:nth-child(1) { --delay: 1.8s; }
+.dot:nth-child(2) { --delay: 2.1s; }
+.dot:nth-child(3) { --delay: 2.4s; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .coming-soon-container h1 {
+    font-size: 2.5rem;
+  }
+}

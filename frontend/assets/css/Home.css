@@ -376,6 +376,28 @@ img {
   border-color: #c10d0d;
 }
 
+
+.powered-by {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #4b5563;
+  opacity: 0.9;
+}
+
+.powered-by img {
+  height: 90px;        /* Adjust size of logo */
+  width: auto;
+  display: block;
+  filter: grayscale(40%);  /* subtle corporate look */
+  transition: 0.3s ease;
+}
+
+.powered-by img:hover {
+  filter: grayscale(0%);
+}
+
 /* =============================
    MULTI COLUMN FOOTER
    ============================= */
