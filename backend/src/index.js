@@ -44,29 +44,63 @@ if (NODE_ENV === 'production' && helmet && helmet.hsts) {
   app.use(helmet.hsts({ maxAge: 31536000, includeSubDomains: true }));
 }
 
-// attach compression once (if available)
 if (compression) {
   app.use(compression());
   console.log('🚀 compression middleware enabled');
 }
 
-// CORS: support comma-separated FRONTEND_URL
-const frontendEnv = process.env.FRONTEND_URL || 'http://localhost:5500';
-const allowedOrigins = frontendEnv.split(',').map(s => s.trim());
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // allow server-to-server / curl
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error('CORS policy: origin not allowed'));
-  },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
+/* ---------- parsers ---------- */
+// body parsers placed early so downstream middleware/handlers can use req.body
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+/* ---------- CORS debugging (must run BEFORE cors middleware) ---------- */
+app.use((req, res, next) => {
+  if (req.headers.origin) {
+    console.log('🌐 Incoming Origin:', req.headers.origin);
+  }
+  next();
+});
+
+/* ---------- CORS ---------- */
+const frontendEnv = process.env.FRONTEND_URL || 'http://localhost:5500';
+const allowedOrigins = frontendEnv.split(',').map(s => s.trim()).filter(Boolean);
+console.log('Allowed origins:', allowedOrigins);
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // allow non-browser requests (no origin header)
+    if (!origin) return callback(null, true);
+
+    // allow exact matches
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // log and soft-reject for debugging/visibility
+    console.warn('⛔ Blocked CORS request from origin:', origin);
+    return callback(null, false); // browser will block, server will still process the request
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
+/* ---------- optional: convert cors errors to 403 JSON (if you later choose to throw) ----------
+   If you switch to callback(new Error('CORS policy...')) in corsOptions, enable this middleware.
+   For now it will not be triggered because we soft-reject.
+*/
+app.use((err, req, res, next) => {
+  if (err && err.message && err.message.includes('CORS policy')) {
+    return res.status(403).json({ error: 'CORS policy: origin not allowed' });
+  }
+  next(err);
+});
+
+/* ---------- request logging (toggle) ---------- */
 if (process.env.REQUEST_LOG !== 'false') {
   app.use((req, res, next) => {
     console.log(`➡️  ${req.method} ${req.originalUrl}`);
@@ -125,6 +159,7 @@ app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found' });
 });
 
+// generic error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err && (err.stack || err));
   if (res.headersSent) return next(err);
