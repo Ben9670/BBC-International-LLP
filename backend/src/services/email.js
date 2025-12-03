@@ -49,6 +49,23 @@ function createTransporter() {
  * { to, from, subject, text, html, replyTo }
  */
 async function sendEmail(mailOptions = {}) {
+  // Example inside sendEmail function
+function isValidEmail(addr) {
+  return typeof addr === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr);
+}
+
+module.exports = async function sendEmail(opts = {}) {
+  const { to, from } = opts;
+  if (!to || !isValidEmail(to)) {
+    throw new Error("sendEmail: 'to' address is missing or invalid");
+  }
+  if (!from || !isValidEmail(from)) {
+    throw new Error("sendEmail: 'from' address is missing or invalid");
+  }
+
+  // existing nodemailer logic...
+};
+
   try {
     const t = createTransporter();
 
