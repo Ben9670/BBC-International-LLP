@@ -4,14 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="../assets/images/SSArtboard 1.png">
-  <title>Clients & Partners | BBC International</title>
+  <title>Products | BBC International</title>
 
-  <link rel="stylesheet" href="../assets/css/Client.css" />
+  <!-- Products Page CSS -->
+  <link rel="stylesheet" href="../assets/css/ProductCard.css">
 </head>
-
 <body>
-
-  <div id="curtain"></div>
 
   <!-- Top Bar -->
   <div class="top-bar">
@@ -25,12 +23,12 @@
 <header class="header">
   <div class="container header-inner">
 
-    <!-- Logo -->
-  <div class="logo">
-    <a href="Home.html">
-      <img src="../assets/images/SSArtboard 1.png" alt="BBC International Logo">
-    </a>
-  </div>
+        <!-- Logo -->
+    <div class="logo">
+        <a href="Home.html">
+          <img src="../assets/images/SSArtboard 1.png" alt="BBC International Logo">
+        </a>
+    </div>
 
     <!-- Hamburger -->
     <div class="hamburger" onclick="toggleMenu()">
@@ -48,59 +46,59 @@
       <a href="Client.html">Clients & Partners</a>
       <a href="Gallery.html">Gallery</a>
       <a href="Contact.html">Contact Us</a>
+      <a href="Product.html" >Product</a>
     </nav>
 
   </div>
 </header>
 
-  <!-- Hero -->
-  <section class="subpage-hero">
-    <div class="container subpage-hero-inner">
-      <h1>Clients & Partners</h1>
-      <p>Trusted by leading global brands, retailers and certified manufacturing partners.</p>
-    </div>
-  </section>
+<section class="hero-slider">
 
-  <!-- Big Client Logo Wall -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Our Global Clients</h2>
+  <div class="slides-container">
 
-      <div class="logo-wall">
-
-        <div class="logo-card"><img src="../assets/images/clients/logo1.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo2.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo3.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo4.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo5.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo6.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo7.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo8.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo9.png" alt="Client Logo"></div>
-        <div class="logo-card"><img src="../assets/images/clients/logo10.png" alt="Client Logo"></div>
-
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <img src="../assets/images/Banner Smpl1.jpg" class="slide-img">
+      <div class="hero-bottom-bar">
+        <span class="hero-title">MENS COLLECTION</span>
+        <button class="hero-arrow"><span class="arrow-icon">→</span></button>
       </div>
-
     </div>
-  </section>
 
-  <!-- Partner Factory Wall -->
-  <section class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Manufacturing Partners</h2>
-
-      <div class="partner-wall">
-
-        <div class="partner-card">Partner Factory 1</div>
-        <div class="partner-card">Partner Factory 2</div>
-        <div class="partner-card">Partner Factory 3</div>
-        <div class="partner-card">Partner Factory 4</div>
-        <div class="partner-card">Partner Factory 5</div>
-
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="../assets/images/Banner Smpl2.jpg" class="slide-img">
+      <div class="hero-bottom-bar">
+        <span class="hero-title">WOMENS COLLECTION</span>
+        <button class="hero-arrow"><span class="arrow-icon">→</span></button>
       </div>
-
     </div>
-  </section>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="../assets/images/Banner Smpl3.jpg" class="slide-img">
+      <div class="hero-bottom-bar">
+        <span class="hero-title">FABRICS & TEXTURES</span>
+        <button class="hero-arrow"><span class="arrow-icon">→</span></button>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+      <img src="../assets/images/Banner Smpl4.jpg" class="slide-img">
+      <div class="hero-bottom-bar">
+        <span class="hero-title">FORMAL WEAR</span>
+        <button class="hero-arrow"><span class="arrow-icon">→</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation arrows -->
+  <button class="slider-btn prev">❮</button>
+  <button class="slider-btn next">❯</button>
+
+</section>
 
   <!-- Footer -->
 <footer class="footer">
@@ -119,9 +117,10 @@
     <div class="footer-col">
       <h4>Products</h4>
       <a href="Product.html">All Products</a>
-      <a href="MensWear.html">Men's Wear</a>
-      <a href="WomensWear.html">Women's Wear</a>
-      <a href="KidsWear.html">Kids Wear</a>
+      <a href="Men.html">Men's Wear</a>
+      <a href="Women.html">Women's Wear</a>
+      <a href="Kids.html">Kids Wear</a>
+      <a href="Girls.html">Girls Wear</a>
     </div>
 
     <!-- Column 3 -->
@@ -155,9 +154,9 @@
 
 </footer>
 
-
   <script src="../assets/js/Home.js"></script>
   <script src="../assets/js/Transition.js"></script>
+  <script src="../assets/js/Product.js"></script>
 
 </body>
 </html>

@@ -3,12 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/SSArtboard 1.png">
   <title>Gallery | BBC International</title>
 
   <link rel="stylesheet" href="../assets/css/Gallery.css" />
 </head>
 
 <body>
+
+  <!-- GDPR AUDIO CONSENT POPUP -->
+<div id="audio-consent-popup" class="audio-popup">
+  <div class="audio-popup-box">
+    <h2>🔊 Enable Ambient Audio?</h2>
+    <p>This site plays soft background music. Would you like to enable sound?</p>
+
+    <div class="audio-buttons">
+      <button id="enable-sound" class="audio-btn enable">Enable Sound</button>
+      <button id="mute-sound" class="audio-btn mute">Mute</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audio -->
+<audio id="ambient-audio" loop>
+  <source src="../assets/images/Music/calm-soft-background-music-398280.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
 
   <!-- Top Bar -->
   <div class="top-bar">
@@ -23,10 +44,11 @@
   <div class="container header-inner">
 
     <!-- Logo -->
-    <div class="logo">
-      <span class="logo-main">BBC</span>
-      <span class="logo-sub">INTERNATIONAL</span>
-    </div>
+  <div class="logo">
+    <a href="Home.html">
+      <img src="../assets/images/SSArtboard 1.png" alt="BBC International Logo">
+    </a>
+  </div>
 
     <!-- Hamburger -->
     <div class="hamburger" onclick="toggleMenu()">
@@ -58,37 +80,118 @@
   </section>
 
   <!-- Gallery Grid -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Our Work Showcase</h2>
+<!-- INTRO LAYER (Netflix Style) -->
+<section id="gallery-intro" class="netflix-gallery-bg">
 
-      <div class="gallery-grid">
-
-        <!-- Replace with your actual images -->
-        <div class="gallery-card"><img src="../assets/images/gallery/img1.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img2.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img3.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img4.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img5.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img6.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img7.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img8.jpg" alt="Gallery"></div>
-        <div class="gallery-card"><img src="../assets/images/gallery/img9.jpg" alt="Gallery"></div>
-
-      </div>
+    <div class="tile-container">
+        <img src="../assets/images/Smptstimg/1.jpg">
+        <img src="../assets/images/Smptstimg/2.jpg">
+        <img src="../assets/images/Smptstimg/3.jpg">
+        <img src="../assets/images/Smptstimg/4.jpg">
+        <img src="../assets/images/Smptstimg/5.jpg">
+        <img src="../assets/images/Smptstimg/6.jpg">
+        <img src="../assets/images/Smptstimg/7.jpg">
+        <img src="../assets/images/Smptstimg/8.jpg">
+        <img src="../assets/images/Smptstimg/9.jpg">
+        <img src="../assets/images/Smptstimg/10.jpg">
+        <img src="../assets/images/Smptstimg/11.jpg">
+        <img src="../assets/images/Smptstimg/12.jpg">
     </div>
-  </section>
+
+    <div class="netflix-overlay"></div>
+
+    <div class="gallery-title-box">
+        <h1>Our Work & Products</h1>
+        <p>Explore glimpses of our fabrics, stitching, quality checks and more.</p>
+    </div>
+
+</section>
+
+
+<!-- FULL GALLERY (Initially Hidden) -->
+<section id="gallery-full" class="gallery-full hidden">
+
+    <div class="real-gallery">
+        <img src="../assets/images/Smptstimg/1.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/2.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/3.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/4.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/5.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/6.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/7.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/8.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/9.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/10.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/11.jpg" class="g-item">
+        <img src="../assets/images/Smptstimg/12.jpg" class="g-item">
+    </div>
+
+</section>
+
+
+
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© 2025 BBC International. All rights reserved.</p>
-      <p class="footer-note">Quality. Compliance. Commitment.</p>
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="About.html">About Us</a>
+      <a href="Client.html">Clients & Partners</a>
+      <a href="Compliances.html">Compliances</a>
+      <a href="Contact.html">Contact</a>
     </div>
-  </footer>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="Product.html">All Products</a>
+      <a href="MensWear.html">Men's Wear</a>
+      <a href="WomensWear.html">Women's Wear</a>
+      <a href="KidsWear.html">Kids Wear</a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">FAQs</a>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col footer-brand">
+      <h4>BBC International</h4>
+      <p>Quality. Compliance. Commitment.</p>
+      <p class="footer-email">info@bbcinternational.com</p>
+      <div class="powered-by">
+        <span>powered by</span>
+          <img src="../assets/images/lanvordesigns LLP.png" alt="Lan-Vor Designs LLP">
+      </div>
+    </div>
+
+  </div>
+
+<div class="footer-bottom">
+  <p>© 2025 BBC International. All rights reserved.</p>
+
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <span>|</span>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
+</div>
+
+</footer>
 
   <script src="../assets/js/Home.js"></script>
   <script src="../assets/js/Transition.js"></script>
+  
+<!-- FULLSCREEN IMAGE VIEWER -->
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+</div>
 
 </body>
 </html>
