@@ -51,16 +51,69 @@ function mapProductToDTO(pDoc, options = { full: false }) {
   return dto;
 }
 
-/* ----------------- createProduct ----------------- */
+/* ----------------- createProduct (updated, tolerant to imageId strings) ----------------- */
 exports.createProduct = async (req, res, next) => {
   try {
     const payload = req.body || {};
 
-    // Basic SKU auto-generation
+    // Basic SKU auto-generation (unchanged)
     if (!payload.sku && !payload.product_code) {
       payload.sku = `SKU-${Date.now().toString(36).toUpperCase().slice(-8)}`;
     }
 
+    // Normalize images input
+    let imagesInput = Array.isArray(payload.images) ? payload.images : [];
+    if (imagesInput.length > 0) {
+      const ImageModel = require('../models/image'); // lazy require
+      const mongoose = require('mongoose');
+
+      // collect string ids
+      const ids = imagesInput
+        .filter(it => typeof it === 'string' && mongoose.isValidObjectId(String(it)))
+        .map(it => String(it));
+
+      let foundImages = [];
+      if (ids.length) {
+        foundImages = await ImageModel.find({ _id: { $in: ids } }).lean().exec();
+      }
+      const foundById = foundImages.reduce((acc, im) => { acc[String(im._id)] = im; return acc; }, {});
+
+      const normalized = imagesInput.map(it => {
+        // if object already shaped, ensure imageId is ObjectId instance if valid
+        if (it && typeof it === 'object' && !Array.isArray(it)) {
+          if (it.imageId && mongoose.isValidObjectId(String(it.imageId))) {
+            try {
+              it.imageId = new mongoose.Types.ObjectId(String(it.imageId));
+            } catch (e) {
+              // fallback: leave as-is
+            }
+          }
+          return it;
+        }
+
+        // if string id -> embed with metadata from Image doc if available
+        if (typeof it === 'string' && mongoose.isValidObjectId(it)) {
+          const found = foundById[it];
+          const obj = {
+            imageId: new mongoose.Types.ObjectId(it),
+            title: found?.title || '',
+            description: found?.description || '',
+            urls: found?.urls || null,
+            role: null,
+            order: 0
+          };
+          return obj;
+        }
+
+        return null;
+      }).filter(Boolean);
+
+      payload.images = normalized;
+    } else {
+      payload.images = [];
+    }
+
+    // Build Product doc using your mapping
     const doc = new Product({
       title: payload.product_name || payload.title,
       sku: payload.product_code || payload.sku || null,
@@ -79,7 +132,6 @@ exports.createProduct = async (req, res, next) => {
 
     const saved = await doc.save();
 
-    // Return created id and mapped dto (populated category if present)
     const populated = await Product.findById(saved._id).populate('category', 'name slug').lean().exec();
     return res.status(201).json({ success: true, data: mapProductToDTO(populated, { full: true }) });
   } catch (err) {
@@ -87,24 +139,6 @@ exports.createProduct = async (req, res, next) => {
   }
 };
 
-/* ----------------- getProduct (by id or slug) ----------------- */
-exports.getProduct = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const query = {};
-
-    if (mongoose.Types.ObjectId.isValid(id)) query._id = id;
-    else query.slug = id;
-
-    const product = await Product.findOne(query).populate('category', 'name slug').lean().exec();
-
-    if (!product) return res.status(404).json({ success: false, message: 'Product not found' });
-
-    return res.json({ success: true, data: mapProductToDTO(product, { full: true }) });
-  } catch (err) {
-    next(err);
-  }
-};
 
 /* ----------------- listProducts ----------------- */
 exports.listProducts = async (req, res, next) => {
