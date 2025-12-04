@@ -344,38 +344,6 @@ img {
   text-align: center;
 }
 
-/* Contact */
-.contact-info {
-  list-style: none;
-  margin-top: 1rem;
-}
-
-.contact-info li {
-  font-size: 0.95rem;
-  color: #4b5563;
-  margin-bottom: 0.25rem;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 0.6rem 0.9rem;
-  border-radius: 0.5rem;
-  border: 1px solid #d1d5db;
-  font-size: 0.9rem;
-  outline: none;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #c10d0d;
-}
-
 
 .powered-by {
   display: flex;
