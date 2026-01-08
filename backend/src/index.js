@@ -7,6 +7,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
+const cookieParser = require('cookie-parser'); // <-- added
 
 let compression;
 try {
@@ -15,6 +16,7 @@ try {
 } catch (e) {}
 
 const { connect, disconnect } = require('./db');
+const adminAuth = require('./middleware/adminAuth');
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
@@ -41,6 +43,8 @@ if (compression) app.use(compression());
 app.use(express.json({ limit: process.env.REQUEST_BODY_LIMIT || '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser()); // <-- added here (before routes)
+
 const frontendEnv = process.env.FRONTEND_URL || 'http://localhost:5500';
 const allowedOrigins = frontendEnv.split(',').map(s => s.trim()).filter(Boolean);
 console.log('Allowed origins:', allowedOrigins);
@@ -52,7 +56,7 @@ app.use(cors({
     return callback(new Error('Not allowed by CORS'), false);
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'], // <-- added 'Cookie'
   credentials: true,
   optionsSuccessStatus: 204
 }));
@@ -129,6 +133,7 @@ const routeMounts = [
   { path: './routes/quote', mountPath: '/api/quote', name: 'quote router', middleware: rateLimit({ windowMs: 60*60*1000, max: 10 }) },
   { path: './routes/products', mountPath: '/api/products', name: 'products router' },
   { path: './routes/uploads', mountPath: '/api/uploads', name: 'uploads router' },
+  { path: './routes/imageRoutes', mountPath: '/api/images', name: 'images router' },
   { path: './routes/categoryRoutes', mountPath: '/api/categories', name: 'categories router' },
   { path: './routes/authRoutes', mountPath: '/api/auth', name: 'auth router' }
 ];

@@ -3,7 +3,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { connect } = require('../db');
+// const { connect } = require('../db'); // DB connection should be centralized in index.js
 const adminAuth = require('../middleware/adminAuth');
 const uploadsController = require('../controllers/uploadsController');
 const validators = require('../Validator/uploadValidator');
@@ -18,11 +18,15 @@ const upload = multer({
 const UPLOAD_BASE = path.join(process.cwd(), 'uploads', 'images');
 if (!fs.existsSync(UPLOAD_BASE)) fs.mkdirSync(UPLOAD_BASE, { recursive: true });
 
-// Ensure DB connected (safe / idempotent)
-connect().catch(err => console.error('DB connect error', err));
+/**
+ * Presign endpoint — PROTECTED
+ * POST /api/uploads/presign
+ * Body (optional): { filename, contentType, folder }
+ */
+router.post('/presign', adminAuth, uploadsController.presign);
 
 /**
- * Routes
+ * Admin Upload routes (all protected)
  */
 
 // Upload image

@@ -1,14 +1,12 @@
 // backend/src/routes/products.js
 const express = require('express');
-const { body, query, validationResult } = require('express-validator');
+const { body, query, param, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
-const { connect } = require('../db');
 const adminAuth = require('../middleware/adminAuth');
 
 const productController = require('../controllers/productController');
 
 const router = express.Router();
-connect().catch(err => console.error('DB connect error:', err));
 
 /* ---------------- common validation handler ---------------- */
 const handleValidation = (req, res) => {
@@ -21,6 +19,7 @@ const handleValidation = (req, res) => {
 
 /**
  * GET /api/products
+ * Public listing (pagination + filters)
  */
 router.get('/',
   [
@@ -42,8 +41,16 @@ router.get('/',
 
 /**
  * GET /api/products/:id
+ * Public product detail; validate id param
  */
-router.get('/:id', (req, res, next) => productController.getProduct(req, res, next));
+router.get('/:id',
+  [
+    param('id').custom((value) => mongoose.isValidObjectId(value)).withMessage('Invalid product id')
+  ],
+  (req, res, next) => {
+    if (handleValidation(req, res)) return;
+    return productController.getProductById(req, res, next);
+  });
 
 /**
  * POST /api/products (admin)
@@ -76,6 +83,7 @@ router.post('/',
 router.put('/:id',
   adminAuth,
   [
+    param('id').custom((value) => mongoose.isValidObjectId(value)).withMessage('Invalid product id'),
     body('title').optional().trim(),
     body('product_name').optional().trim(),
     body('price').optional().isFloat({ min: 0 }),
@@ -98,6 +106,11 @@ router.put('/:id',
 /**
  * DELETE /api/products/:id (admin)
  */
-router.delete('/:id', adminAuth, (req, res, next) => productController.deleteProduct(req, res, next));
+router.delete('/:id',
+  adminAuth,
+  [
+    param('id').custom((value) => mongoose.isValidObjectId(value)).withMessage('Invalid product id')
+  ],
+  (req, res, next) => productController.deleteProduct(req, res, next));
 
 module.exports = router;

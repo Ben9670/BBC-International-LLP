@@ -233,6 +233,34 @@ exports.listProducts = async (req, res, next) => {
     next(err);
   }
 };
+/* ----------------- getProduct (public) ----------------- */
+exports.getProductById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: 'Invalid product id' });
+    }
+
+    const product = await Product
+      .findById(id)
+      .populate('category', 'name slug')
+      .lean()
+      .exec();
+
+    if (!product) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+
+    return res.json({
+      success: true,
+      data: mapProductToDTO(product, { full: true })
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 
 /* ----------------- updateProduct ----------------- */
 exports.updateProduct = async (req, res, next) => {
