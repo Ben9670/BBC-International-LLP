@@ -6,7 +6,7 @@ const sharp = require('sharp');
 const { randomUUID } = require('crypto');
 const mongoose = require('mongoose');
 
-const Image = require('../models/image');
+const Image = require('../models/ImageUpload');
 const Product = require('../models/Product');
 
 const UPLOAD_BASE = path.join(process.cwd(), 'uploads', 'images');
@@ -17,6 +17,42 @@ function ensureDirSync(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 }
 ensureDirSync(UPLOAD_BASE);
+
+/* ------------------------- Presign stub ------------------------- */
+
+/**
+ * POST /api/uploads/presign
+ *
+ * Returns a dummy presigned-upload response to match S3/GCS shape.
+ * Body (optional): { filename, contentType, folder }
+ */
+async function presign(req, res) {
+  try {
+    const { filename = 'file.bin', contentType = 'application/octet-stream', folder = 'images' } = req.body || {};
+
+    // Build a sensible dummy key that matches your storage layout (images/YYYY/MM/...)
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const key = `${folder}/${yyyy}/${mm}/${Date.now()}-${filename}`;
+
+    const presignResponse = {
+      url: 'https://dummy-upload-url.com', // placeholder upload endpoint
+      fields: {
+        key,                                   // object key (like S3 form field)
+        'Content-Type': contentType,           // content type hint
+        policy: 'dummy-policy',                // placeholder S3-like fields
+        'x-amz-signature': 'dummy-signature'
+      },
+      expiresIn: 300 // seconds
+    };
+
+    return res.status(200).json(presignResponse);
+  } catch (err) {
+    console.error('presign error:', err);
+    return res.status(500).json({ message: 'Failed to generate presign (stub)' });
+  }
+}
 
 /* ------------------------- Helpers ------------------------- */
 
@@ -386,6 +422,7 @@ async function deleteImage(req, res) {
 
 
 module.exports = {
+  presign,
   uploadImage,
   patchImage,
   detachImage,
